@@ -14,7 +14,7 @@
     <style>
       /* BEGIN JSON EDITOR TOOLTIPSTER CSS */
       .je-info-circle {
-        font-size: 80%;
+        font-size: 12px;
         margin-left: 0.3em;
         color: blue;
       }
@@ -28,7 +28,8 @@ var init_je_tooltipster = function(tooltipster_config) {
   if (typeof tooltipster_config === 'undefined' || !tooltipster_config) {
     tooltipster_config = {position: 'right'};
   }
-  $('label.jeFormInputLabel').each(
+  //$('label.json-editor-form-input-label span.json-editor-header').each(
+  $('.json-editor-tooltip').each( 
     function(i, el) {
       if (input.test($(el).html())) {
         return;
@@ -37,14 +38,14 @@ var init_je_tooltipster = function(tooltipster_config) {
       if (desc == 'undefined' || typeof desc == 'undefined' || !desc) {
         return;
       }
-       var title = document.createElement('span');
+      var title = document.createElement('span');
       $(title).html($(el).html());
       title.setAttribute("title", desc);
-       var i = document.createElement('i');
+      var i = document.createElement('i');
       i.className = "fa fa-info-circle je-info-circle";
       title.appendChild(i);
-       $(title).tooltipster(tooltipster_config);
-       el.setAttribute("title", "");
+        $(title).tooltipster(tooltipster_config);
+        el.setAttribute("title", "");
       $(el).html("");
       el.appendChild(title);
     }
@@ -69,6 +70,7 @@ var init_je_tooltipster = function(tooltipster_config) {
         schema: {
           type: "object",
           title: "Car",
+          description: "A car is a wheeled, self-powered motor vehicle used for transportation. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels, and to be constructed principally for the transport of people rather than goods.",
           properties: {
             make: {
               type: "string",
